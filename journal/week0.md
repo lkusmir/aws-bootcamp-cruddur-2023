@@ -4,23 +4,103 @@
 
 1. Set a billing alarm
 
+    TODO: Utilize [this instructions](https://aws.amazon.com/premiumsupport/knowledge-center/cloudwatch-estimatedcharges-alarm/) or [alarm_config](https://github.com/omenking/aws-bootcamp-cruddur-2023/blob/week-1/aws/json/alarm_config.json.example).
 
-* [ ] Set a Billing alarm [Precorded]
+    TODO: Watch [this](https://www.youtube.com/watch?v=4EMWBYVggQI&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=12)
+
+    ```bash
+    aws cloudwatch put-metric-alarm --cli-input-json file://aws/json/alarm_config.json
+    ```
+
 2. Set a AWS Budget 
 
-![budgets](./img/00.png)
+    ```bash
+    aws budgets describe-budget --budget-name "My Monthly Cost Budget" --account-id $AWS_ACCOUNT_ID
+    aws budgets describe-budget --budget-name "My Zero-Spend Budget" --account-id $AWS_ACCOUNT_ID
 
-    ```csv
-    Budget Type,Budget Name,Budgeted Cost,Current Cost,Forecasted Cost,Unit,Filters Applied,Budget Period,Start Date,End Date,Current vs Budgeted Costs (Absolute Variance),Forecasted vs Budgeted Costs (Absolute Variance),Current vs Budgeted Costs (% Variance),Forecasted vs Budgeted Costs (% Variance)
-    Cost,My Monthly Cost Budget,30.0,0.0,"'-",USD,none,Monthly,02/01/23,06/15/87,-30,0,0,0
     ```
 
-    ```csv
-    Budget Type,Budget Name,Budgeted Cost,Current Cost,Forecasted Cost,Unit,Filters Applied,Budget Period,Start Date,End Date,Current vs Budgeted Costs (Absolute Variance),Forecasted vs Budgeted Costs (Absolute Variance),Current vs Budgeted Costs (% Variance),Forecasted vs Budgeted Costs (% Variance)
-    Cost,My Monthly Cost Budget,30.0,0.0,"'-",USD,none,Monthly,02/01/23,06/15/87,-30,0,0,0
-    Cost,My Zero-Spend Budget,1.0,0.0,"'-",USD,none,Monthly,02/01/23,06/15/87,-1,0,0,0
+    ![budgets](./img/00.png)
+
+   ![alarms](./img/06.png)
+
+    ```yaml
+    {
+        "Budget": {
+            "BudgetName": "My Monthly Cost Budget",
+            "BudgetLimit": {
+                "Amount": "30.0",
+                "Unit": "USD"
+            },
+            "CostFilters": {},
+            "CostTypes": {
+                "IncludeTax": true,
+                "IncludeSubscription": true,
+                "UseBlended": false,
+                "IncludeRefund": false,
+                "IncludeCredit": false,
+                "IncludeUpfront": true,
+                "IncludeRecurring": true,
+                "IncludeOtherSubscription": true,
+                "IncludeSupport": true,
+                "IncludeDiscount": true,
+                "UseAmortized": false
+            },
+            "TimeUnit": "MONTHLY",
+            "TimePeriod": {
+                "Start": "2023-02-01T01:00:00+01:00",
+                "End": "2087-06-15T02:00:00+02:00"
+            },
+            "CalculatedSpend": {
+                "ActualSpend": {
+                    "Amount": "0.0",
+                    "Unit": "USD"
+                }
+            },
+            "BudgetType": "COST",
+            "LastUpdatedTime": "2023-02-12T11:16:49.153000+01:00"
+        }
+    }
     ```
 
+    ```yaml
+    {
+        "Budget": {
+            "BudgetName": "My Zero-Spend Budget",
+            "BudgetLimit": {
+                "Amount": "1.0",
+                "Unit": "USD"
+            },
+            "CostFilters": {},
+            "CostTypes": {
+                "IncludeTax": true,
+                "IncludeSubscription": true,
+                "UseBlended": false,
+                "IncludeRefund": false,
+                "IncludeCredit": false,
+                "IncludeUpfront": true,
+                "IncludeRecurring": true,
+                "IncludeOtherSubscription": true,
+                "IncludeSupport": true,
+                "IncludeDiscount": true,
+                "UseAmortized": false
+            },
+            "TimeUnit": "MONTHLY",
+            "TimePeriod": {
+                "Start": "2023-02-01T01:00:00+01:00",
+                "End": "2087-06-15T02:00:00+02:00"
+            },
+            "CalculatedSpend": {
+                "ActualSpend": {
+                    "Amount": "0.0",
+                    "Unit": "USD"
+                }
+            },
+            "BudgetType": "COST",
+            "LastUpdatedTime": "2023-02-12T11:17:45.444000+01:00"
+        }
+    }    
+    ```
 
 3. Generating AWS Credentials 
 
@@ -58,7 +138,7 @@
     ![napkin.design](./img/05.png)
     *Napkin Design*
 
-        * architecture diagram - just recreate [this](https://lucid.app/lucidchart/6f80cd2d-7d18-4731-aadc-bdda9773c092/edit?invitationId=inv_c648fee2-f691-443d-8602-7e959b41a18d&page=R01soSDRiqq8#)
+       TODO: architecture diagram - just recreate [this](https://lucid.app/lucidchart/6f80cd2d-7d18-4731-aadc-bdda9773c092/edit?invitationId=inv_c648fee2-f691-443d-8602-7e959b41a18d&page=R01soSDRiqq8#)
 
 ## Homework Stretch Assignments
 
@@ -67,9 +147,13 @@
     *Completed in hard assignments already.*
 
  Use EventBridge to hookup Health Dashboard to SNS and send notification when there is a service health issue.
+
  Review all the questions of each pillars in the Well Architected Tool (No specialized lens)
+
  Create an architectural diagram (to the best of your ability) the CI/CD logical pipeline in Lucid Charts
+
  Research the technical and service limits of specific services and how they could impact the technical path for technical flexibility.
+
  Open a support ticket and request a service limit
 
 ## Additional configuration
