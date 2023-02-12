@@ -54,8 +54,11 @@
     **NOTE:** This might impose security risk, as the CLI keys are not expirable by default. Needs further investigation on best practice for expiration. 
 
 5. Conceptual Architecture Diagram or your Napkins [Live-Stream]
-        * napkin design
-        * architecture diagram - just recreate this
+        
+    ![napkin.design](./img/05.png)
+    *Napkin Design*
+
+        * architecture diagram - just recreate [this](https://lucid.app/lucidchart/6f80cd2d-7d18-4731-aadc-bdda9773c092/edit?invitationId=inv_c648fee2-f691-443d-8602-7e959b41a18d&page=R01soSDRiqq8#)
 
 ## Homework Stretch Assignments
 
