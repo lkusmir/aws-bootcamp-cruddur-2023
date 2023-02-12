@@ -30,12 +30,16 @@
 4. Using CloudShell 
 
     ![AWS.Cloudshell](./img/02.png)
-    
+
+    The `aws cli` was installed into the gitpod environment. See the `.gitpod.yml`
+
+    ![gitpod.cli](./img/04.png)
+
 * [ ] Conceptual Architecture Diagram or your Napkins [Live-Stream]
         * napkin design
         * architecture diagram - just recreate this
 
-Homework Stretch Assignments
+## Homework Stretch Assignments
 
 1. Destroy your root account credentials, Set MFA, IAM role
 
@@ -46,3 +50,9 @@ Homework Stretch Assignments
  Create an architectural diagram (to the best of your ability) the CI/CD logical pipeline in Lucid Charts
  Research the technical and service limits of specific services and how they could impact the technical path for technical flexibility.
  Open a support ticket and request a service limit
+
+## Additional configuration
+
+1. Since I have made a decision to duplicate the Gitpod env within my local state, I had to configure the `aws cli` locally. All instrusctions, including completion are within the [aws docs](https://aws.amazon.com/cli/)
+
+![aws.cli](./img/03.png)
