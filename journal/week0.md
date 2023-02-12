@@ -35,7 +35,25 @@
 
     ![gitpod.cli](./img/04.png)
 
-* [ ] Conceptual Architecture Diagram or your Napkins [Live-Stream]
+    To add configuration to the [gitpod environments](https://www.gitpod.io/docs/configure/projects/environment-variables) (persistent throught sessions):
+
+    ```bash
+    # setting the persistent gitpod environment values
+    gp env AWS_ACCESS_KEY_ID="key_id"
+    gp env AWS_SECRET_ACCESS_KEY="secret_access_key"
+    gp env AWS_DEFAULT_REGION="eu-central-1"
+    # importing them to the local session 
+    eval $(gp env -e)
+    # listing current bash env
+    env | grep AWS
+    aws sts get-caller-identity
+    ```
+
+    This is a one time action. 
+
+    **NOTE:** This might impose security risk, as the CLI keys are not expirable by default. Needs further investigation on best practice for expiration. 
+
+5. Conceptual Architecture Diagram or your Napkins [Live-Stream]
         * napkin design
         * architecture diagram - just recreate this
 
