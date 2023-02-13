@@ -14,6 +14,8 @@
 
 2. Set a AWS Budget 
 
+    No free tier, hence actually only monthy budget counts...
+
     ```bash
     aws budgets describe-budget --budget-name "My Monthly Cost Budget" --account-id $AWS_ACCOUNT_ID
     aws budgets describe-budget --budget-name "My Zero-Spend Budget" --account-id $AWS_ACCOUNT_ID
@@ -138,7 +140,8 @@
     ![napkin.design](./img/05.png)
     *Napkin Design*
 
-       TODO: architecture diagram - just recreate [this](https://lucid.app/lucidchart/6f80cd2d-7d18-4731-aadc-bdda9773c092/edit?invitationId=inv_c648fee2-f691-443d-8602-7e959b41a18d&page=R01soSDRiqq8#)
+    ![arch.design](./img/07.png)
+    *Architectural Design*
 
 ## Homework Stretch Assignments
 
@@ -146,15 +149,19 @@
 
     *Completed in hard assignments already.*
 
- Use EventBridge to hookup Health Dashboard to SNS and send notification when there is a service health issue.
+ 2. Use EventBridge to hookup Health Dashboard to SNS and send notification when there is a service health issue.
 
- Review all the questions of each pillars in the Well Architected Tool (No specialized lens)
+ 3. Review all the questions of each pillars in the Well Architected Tool (No specialized lens)
 
- Create an architectural diagram (to the best of your ability) the CI/CD logical pipeline in Lucid Charts
+    *Completed.*
 
- Research the technical and service limits of specific services and how they could impact the technical path for technical flexibility.
+ 4. Create an architectural diagram (to the best of your ability) the CI/CD logical pipeline in Lucid Charts
 
- Open a support ticket and request a service limit
+ 5. Research the technical and service limits of specific services and how they could impact the technical path for technical flexibility.
+
+ 6. Open a support ticket and request a service limit
+
+    *N/A*
 
 ## Additional configuration
 

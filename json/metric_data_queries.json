@@ -1,0 +1,30 @@
+{
+    "MetricDataQueries": [
+        {
+            "Id": "m1",
+            "MetricStat": {
+                "Metric": {
+                    "Namespace": "AWS/Billing",
+                    "MetricName": "EstimatedCharges",
+                    "Dimensions": [
+                        {
+                            "Name": "Currency",
+                            "Value": "USD"
+                        }
+                    ]
+                },
+                "Period": 86400,
+                "Stat": "Maximum"
+            }
+        },
+    {
+            "Id": "e1",
+            "Expression": "IF(RATE(m1)>0,RATE(m1)*86400,0)",
+            "Label": "DailyEstimatedCharges",
+        "Period": 86400
+        }
+    ],
+    "StartTime": "2020-06-01T00:00:00Z",
+    "EndTime": "2020-06-05T00:00:00Z",
+    "ScanBy": "TimestampAscending"
+}
