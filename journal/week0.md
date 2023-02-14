@@ -153,7 +153,7 @@
 
  3. Review all the questions of each pillars in the Well Architected Tool (No specialized lens)
 
-    *Completed.*
+    *Completed.* Check [this wheel of architecture excelency](https://wa.aws.amazon.com/wat.map.en.html)
 
  4. Create an architectural diagram (to the best of your ability) the CI/CD logical pipeline in Lucid Charts
 
