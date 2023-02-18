@@ -171,7 +171,6 @@
 
  6. Open a support ticket and request a service limit.
 
-    *N/A*
 
 ## Additional configuration
 
