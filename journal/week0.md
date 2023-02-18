@@ -4,13 +4,23 @@
 
 1. Set a billing alarm
 
-    TODO: Utilize [this instructions](https://aws.amazon.com/premiumsupport/knowledge-center/cloudwatch-estimatedcharges-alarm/) or [alarm_config](https://github.com/omenking/aws-bootcamp-cruddur-2023/blob/week-1/aws/json/alarm_config.json.example) or [via console](https://www.youtube.com/watch?v=OVw3RrlP-sI&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=14).
+    Using [this instructions](https://aws.amazon.com/premiumsupport/knowledge-center/cloudwatch-estimatedcharges-alarm/). Also available [alarm_config](https://github.com/omenking/aws-bootcamp-cruddur-2023/blob/week-1/aws/json/alarm_config.json.example) or [via console](https://www.youtube.com/watch?v=OVw3RrlP-sI&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=14).
 
-    TODO: Watch [this](https://www.youtube.com/watch?v=4EMWBYVggQI&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=12)
+  
 
     ```bash
-    aws cloudwatch put-metric-alarm --cli-input-json file://aws/json/alarm_config.json
+    $ aws cloudwatch get-metric-data --cli-input-json file://json/metric_data_queries.json
     ```
+ 
+    Creating an alarm - using the m1 metric and the Alarm Action (update accordingly before apllying form the template file)
+
+    ```bash
+    $ aws cloudwatch put-metric-alarm --cli-input-json file://json/alarm_config.json 
+    ```
+
+    Result:
+    ![alarm](./img/08.png)
+
 
 2. Set a AWS Budget 
 
@@ -153,13 +163,13 @@
 
  3. Review all the questions of each pillars in the Well Architected Tool (No specialized lens)
 
-    *Completed.* Check [this wheel of architecture excelency](https://wa.aws.amazon.com/wat.map.en.html)
+    *Completed.* Check [this wheel of architecture excelency](https://wa.aws.amazon.com/wat.map.en.html).
 
  4. Create an architectural diagram (to the best of your ability) the CI/CD logical pipeline in Lucid Charts
 
  5. Research the technical and service limits of specific services and how they could impact the technical path for technical flexibility.
 
- 6. Open a support ticket and request a service limit
+ 6. Open a support ticket and request a service limit.
 
     *N/A*
 
