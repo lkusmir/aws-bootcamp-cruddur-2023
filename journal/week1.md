@@ -86,6 +86,7 @@ $ curl 127.0.0.1:4567/api/activities/home
 r-click on the docker-compose 
 docker-compose -f "docker-compose.yml" up -d --build 
 
+![app_running_on_gitpod](./img/09.png)
 
 ## Homework
 
