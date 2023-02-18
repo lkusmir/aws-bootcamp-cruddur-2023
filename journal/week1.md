@@ -5,6 +5,10 @@
 AEdith Pucila
 James Spurin
 
+## Script
+
+https://github.com/omenking/aws-bootcamp-cruddur-2023/blob/week-1/journal/week1.md
+
 ## Container registries
 
 dockerhub
@@ -81,3 +85,20 @@ $ curl 127.0.0.1:4567/api/activities/home
 
 r-click on the docker-compose 
 docker-compose -f "docker-compose.yml" up -d --build 
+
+
+## Homework
+
+Run the docker CMD as ex external script
+
+rush and tag an image to dockerhub
+
+multistage building for a Dockerfile 
+
+Impelment a healthcheck in the V3 Docker compos file
+
+Research best practices of Dockerfile and attempt to implement it in your Dockerfile
+
+Learn how to install Docker on your localmachine and get the same containes running outside of Gitpod/codespaces
+
+Launch an EC2 instance that has docker installed, and pull a container to demonstrate you can run your own docker processes
