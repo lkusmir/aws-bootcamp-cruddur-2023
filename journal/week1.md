@@ -1,27 +1,64 @@
 # Week 1 — App Containerization
 
-## Cast
+## Home assignment
 
-AEdith Pucila
+1. Run the docker CMD as en external script.
+
+To 
+```bash
+docker run backend-flask:1.0-SNAPSHOT /shell /script
+```
+
+2. Push and tag an image to dockerhub
+
+3. Multistage building for a Dockerfile 
+
+4. Impelement a healthcheck in the V3 Docker compos file
+
+5. Research best practices of Dockerfile and attempt to implement it in your Dockerfile
+
+6. Learn how to install Docker on your localmachine and get the same containes running outside of Gitpod/codespaces
+
+[Installation procedure](https://docs.docker.com/engine/install/debian/) on my local machine.
+
+Building and running the application locally:
+```bash
+$ pwd
+/home/lkusmir/git/aws-bootcamp-cruddur-2023/backend-flask
+
+$ docker build -t backend-flask:1.0-SNAPSHOT .
+Sending build context to Docker daemon  33.79kB
+(...)
+Successfully built 1cd618986456
+Successfully tagged backend-flask:1.0-SNAPSHOT
+
+
+
+
+```
+
+7. Launch an EC2 instance that has docker installed, and pull a container to demonstrate you can run your own docker processes
+
+## Week1 -  Notes from the meetup
+
+### Cast
+
+Aedith Pucila  
 James Spurin
 
-## Script
+### Script
 
-https://github.com/omenking/aws-bootcamp-cruddur-2023/blob/week-1/journal/week1.md
+We were following the [procedure](https://github.com/omenking/aws-bootcamp-cruddur-2023/blob/week-1/journal/week1.md).
 
-## Container registries
+Worth reading:
+* [Docker compose](https://docs.docker.com/compose/gettingstarted/)
+* [Dockerfile reference](https://docs.docker.com/engine/reference/builder/)
 
-dockerhub
-oci - open container initiative
-ecr - 
-quay.io
-redhat container registry
+### Notes
 
+#### Docker
 
-jfrog artifactory, nexus is software allowing for docker registry functionality
-
-## Building the container
-
+```bash
  $ docker build -t backend-flask:1.0-SNAPSHOT .
  $ docker image ls
 REPOSITORY                                    TAG                 IMAGE ID            CREATED              SIZE
@@ -55,53 +92,55 @@ $ curl 127.0.0.1:4567/api/activities/home
         "reposts_count": 0,
         "uuid": "26e12864-1c26-5c3a-9658-97a10f8fea67"
       }
-    ],
-    "replies_count": 1,
-    "reposts_count": 0,
-    "uuid": "68f126b0-1ceb-4a33-88be-d90fa7109eee"
-  },
-  {
-    "created_at": "2023-02-11T18:44:39.933036+00:00",
-    "expires_at": "2023-02-27T18:44:39.933036+00:00",
-    "handle": "Worf",
-    "likes": 0,
-    "message": "I am out of prune juice",
-    "replies": [],
-    "uuid": "66e12864-8c26-4c3a-9658-95a10f8fea67"
-  },
-  {
-    "created_at": "2023-02-18T17:44:39.933036+00:00",
-    "expires_at": "2023-02-19T06:44:39.933036+00:00",
-    "handle": "Garek",
-    "likes": 0,
-    "message": "My dear doctor, I am just simple tailor",
-    "replies": [],
-    "uuid": "248959df-3079-4947-b847-9e0892d1bab4"
-  }
-]
+(...)
+```
 
+#### Docker compose
 
-### Docker compose
+**HINT:** Remeber to `npm -i` in the frontend dir before docker compose. 
 
-HINT: `npm -i` in the frontend dir before docker compose.
+**HINT:** R-click on the codker-compose.yml for an action.
 
-r-click on the docker-compose 
+```bash
 docker-compose -f "docker-compose.yml" up -d --build 
+```
 
 ![app_running_on_gitpod](./img/09.png)
 
-## Homework
+```bash
+$ curl https://3000-lkusmir-awsbootcampcrud-dtlch9mjm9e.ws-eu87.gitpod.io/
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
 
-Run the docker CMD as ex external script
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
 
-rush and tag an image to dockerhub
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-multistage building for a Dockerfile 
+    <meta name="description" content="Cruddur"/>
+    <title>Cruddur</title>
+  <script defer src="/static/js/bundle.js"></script></head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <main></main>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
 
-Impelment a healthcheck in the V3 Docker compos file
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
 
-Research best practices of Dockerfile and attempt to implement it in your Dockerfile
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  </body>
+</html>
+```
 
-Learn how to install Docker on your localmachine and get the same containes running outside of Gitpod/codespaces
-
-Launch an EC2 instance that has docker installed, and pull a container to demonstrate you can run your own docker processes
