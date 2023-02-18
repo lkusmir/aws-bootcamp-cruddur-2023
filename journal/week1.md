@@ -83,6 +83,8 @@ $ curl 127.0.0.1:4567/api/activities/home
 
 ### Docker compose
 
+HINT: `npm -i` in the frontend dir before docker compose.
+
 r-click on the docker-compose 
 docker-compose -f "docker-compose.yml" up -d --build 
 
