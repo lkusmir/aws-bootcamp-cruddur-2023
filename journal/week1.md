@@ -59,7 +59,7 @@ Shall we go with [quay.io too](https://docs.quay.io/solution/getting-started.htm
 
     $ docker run -e FRONTEND_URL="*" -e BACKEND_URL="*" -d -p 4567:4567 backend-flask:1.0-SNAPSHOT
     87ea942d63221c13e9a49ee36840a9dcdbddacd25991a63b1382f96e7a19601b
-    $ docker run -e FRONTEND_URL="*" -e BACKEND_URL="*" -d -p 3000:3000 frontend-react-js:1.0-SNAPSHOT 
+    $ docker run -e -e REACT_APP_BACKEND_URL="http://localhost:4567" -d -p 3000:3000 frontend-react-js:1.0-SNAPSHOT 
     c9e70930ccff4b1b32193037d1f122d402f2de86f7029a2b38dc36c47d3e7593
     ```
 
