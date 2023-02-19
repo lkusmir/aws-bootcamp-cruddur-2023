@@ -20,8 +20,8 @@ Shall we go with [quay.io too](https://docs.quay.io/solution/getting-started.htm
 
 5. Research best practices of Dockerfile and attempt to implement it in your Dockerfile
 
-* commands kolejnosc matters
-* dont' do root - rootless is the new black
+* commands order matters
+* don't do root - rootless is the new black
 * use explicit versions
 * keep it small
 
@@ -155,6 +155,8 @@ docker-compose -f "docker-compose.yml" up -d --build
 
 ![app_running_on_gitpod](./img/09.png)
 *Application running on GitPod*
+
+**WARNING:** Note it was initally running without frontend-backend connection due to typo in `docker-compose.yml`. Fixed.
 
 ```bash
 $ curl https://3000-lkusmir-awsbootcampcrud-dtlch9mjm9e.ws-eu87.gitpod.io/
