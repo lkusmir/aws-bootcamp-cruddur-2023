@@ -1,7 +1,7 @@
 import './App.css';
 
 import HomeFeedPage from './pages/HomeFeedPage';
-import NotificationFeedPage from './pages/NotificationFeedPage.js';
+import NotificationFeedPage from './pages/NotificationsFeedPage.js';
 import UserFeedPage from './pages/UserFeedPage';
 import SignupPage from './pages/SignupPage';
 import SigninPage from './pages/SigninPage';
