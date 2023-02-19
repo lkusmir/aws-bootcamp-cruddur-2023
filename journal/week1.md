@@ -69,7 +69,7 @@ Shall we go with [quay.io too](https://docs.quay.io/solution/getting-started.htm
     ![local.app.live](./img/10.png)
     *Application running locally.*
 
-    TODO: Second approach with docker-compose ?
+    TODO: Second approach with docker-compose?
 
 7. Launch an EC2 instance that has docker installed, and pull a container to demonstrate you can run your own docker processes
 
@@ -79,6 +79,12 @@ Shall we go with [quay.io too](https://docs.quay.io/solution/getting-started.htm
 
 ```bash
 $ docker run -e RUN_LOCAL=true -e FILTER_REGEX_INCLUDE=./journal/* -v $PWD:/tmp/lint github/super-linter
+(...)
+2023-02-19 00:11:58 [INFO]   The script has completed
+2023-02-19 00:11:58 [INFO]   ----------------------------------------------
+2023-02-19 00:11:58 [INFO]   ----------------------------------------------
+2023-02-19 00:11:58 [ERROR]   ERRORS FOUND in MARKDOWN:[2]
+2023-02-19 00:11:59 [FATAL]   Exiting with errors found!
 ```
 
 ## Week1 -  Notes from the meetup
@@ -139,7 +145,7 @@ $ curl 127.0.0.1:4567/api/activities/home
 
 #### Building the app - docker compose
 
-**HINT:** Remeber to `npm -i` in the frontend dir before docker compose. 
+**HINT:** Remeber to `npm -i` in the frontend dir before docker compose.
 
 **HINT:** R-click on the codker-compose.yml for an action.
 
