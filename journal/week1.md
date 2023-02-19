@@ -3,18 +3,18 @@
 ## Home assignment
 
 1. Run the docker CMD as en external script.
- 
+
 ```bash
 docker run backend-flask:1.0-SNAPSHOT /shell /script
 ```
 
 2. Push and tag an image to dockerhub
 
-TODO: https://docs.docker.com/docker-hub/repos/
+TODO: [push_to_dockerhub](https://docs.docker.com/docker-hub/repos/)
 
-Shall we go with quay.io too (https://docs.quay.io/solution/getting-started.html)?
+Shall we go with [quay.io too](https://docs.quay.io/solution/getting-started.html)?
 
-3. Multistage building for a Dockerfile 
+3. Multistage building for a Dockerfile
 
 4. Impelement a healthcheck in the V3 Docker compos file
 
@@ -69,9 +69,17 @@ Shall we go with quay.io too (https://docs.quay.io/solution/getting-started.html
     ![local.app.live](./img/10.png)
     *Application running locally.*
 
-    TODO: Second approach with docker-compose ? 
+    TODO: Second approach with docker-compose ?
 
 7. Launch an EC2 instance that has docker installed, and pull a container to demonstrate you can run your own docker processes
+
+## Other information
+
+1. One can utilize docker to run [super-linter](https://github.com/github/super-linter#filter-linted-files) locally. Let's limit the scope of test for the `./journal` directory for now.
+
+```bash
+$ docker run -e RUN_LOCAL=true -e FILTER_REGEX_INCLUDE=./journal/* -v $PWD:/tmp/lint github/super-linter
+```
 
 ## Week1 -  Notes from the meetup
 
