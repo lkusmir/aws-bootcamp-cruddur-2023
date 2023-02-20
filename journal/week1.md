@@ -119,13 +119,16 @@ docker run backend-flask:1.0-SNAPSHOT /shell /script
 
 3. Multistage building for a Dockerfile
 
-4. Impelement a healthcheck in the V3 Docker compos file
+4. Implement a healthcheck in the V3 Docker compos file
 
   Relevant documentation:
   * [compose healthcheck](https://docs.docker.com/compose/compose-file/compose-file-v3/)
   * [docker docs](https://docs.docker.com/engine/reference/builder/#healthcheck)
 
   Added a simplimistic API Endpoint `/api/status` to the Backend and a Healthcheck to `docker-compose.yml`.
+  Performed a check - works as exptected.
+  ![works as expected](./img/15.png)  
+  *Docker status check*
 
 5. Research best practices of Dockerfile and attempt to implement it in your Dockerfile
 
