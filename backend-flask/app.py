@@ -26,6 +26,10 @@ cors = CORS(
   methods="OPTIONS,GET,HEAD,POST"
 )
 
+@app.route("/api/status", methods=['GET'])
+def data_show_testsuccess():
+  return "OK", 200
+
 @app.route("/api/message_groups", methods=['GET'])
 def data_message_groups():
   user_handle  = 'andrewbrown'
@@ -117,7 +121,7 @@ def data_activities_reply(activity_uuid):
     return model['errors'], 422
   else:
     return model['data'], 200
-  return
+  return  
 
 if __name__ == "__main__":
   app.run(debug=True)

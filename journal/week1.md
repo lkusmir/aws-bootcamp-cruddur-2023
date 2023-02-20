@@ -70,7 +70,7 @@ docker run backend-flask:1.0-SNAPSHOT /shell /script
   Status: Image is up to date for lkusmir/backend-flask:latest
   ```
 
-  * Pushing the image to [quay.io](https://quay.io) repository.
+  * Pushing the image to [quay.io](https://quay.io) repository (since why not).
 
   ```bash
   # Login to repository
@@ -121,9 +121,15 @@ docker run backend-flask:1.0-SNAPSHOT /shell /script
 
 4. Impelement a healthcheck in the V3 Docker compos file
 
+  Relevant documentation:
+  * [compose healthcheck](https://docs.docker.com/compose/compose-file/compose-file-v3/)
+  * [docker docs](https://docs.docker.com/engine/reference/builder/#healthcheck)
+
+  Added a simplimistic API Endpoint `/api/status` to the Backend and a Healthcheck to `docker-compose.yml`.
+
 5. Research best practices of Dockerfile and attempt to implement it in your Dockerfile
 
-  Some of the best practices implemented:
+  Some of the [best practices](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/) implemented:
 
   * Application code [testing for vulnerabilites](https://sonarcloud.io/project/overview?id=lkusmir_aws-bootcamp-cruddur-2023) before production use. Shift left when possible.
 
@@ -137,7 +143,10 @@ docker run backend-flask:1.0-SNAPSHOT /shell /script
   ![example.result](./img/13.png)  
   *Example scan result*
 
-* keeping runtimes updated - automatically rebuild images on regular basis
+* keeping runtimes updated 
+
+Added apt to BackEnd Dockerfile
+
 * basic data within dockerfile -author etc
 * no sensitive data in docker files or images + SecretMgmtService - vault
 * RO filesystem and Volume 

@@ -1,5 +1,10 @@
 FROM python:3.10-slim-buster
 
+# Let's make sure we're updated and install curl for the Healthcheck
+RUN apt-get update && apt-get full-upgrade -y\
+  && apt-get install -y curl \
+  && rm -rf /var/lib/apt/lists/*
+
 # Inside Container
 # make a new folder inside container
 WORKDIR /backend-flask
