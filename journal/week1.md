@@ -125,10 +125,12 @@ docker run backend-flask:1.0-SNAPSHOT /shell /script
   * [compose healthcheck](https://docs.docker.com/compose/compose-file/compose-file-v3/)
   * [docker docs](https://docs.docker.com/engine/reference/builder/#healthcheck)
 
-  Added a simplimistic API Endpoint `/api/status` to the Backend and a Healthcheck to `docker-compose.yml`.
+  Added a simplistic API Endpoint `/api/status` to the Backend and a Healthcheck to `docker-compose.yml`.
   Performed a check - works as exptected.
   ![works as expected](./img/15.png)  
   *Docker status check*
+
+  Added a Frontend Healthcheck appropriately. 
 
 5. Research best practices of Dockerfile and attempt to implement it in your Dockerfile
 

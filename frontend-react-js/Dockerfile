@@ -1,5 +1,9 @@
 FROM node:16.18
 
+# Let's make sure we're updated and install curl for the Healthcheck
+RUN apt-get update && apt-get full-upgrade -y\
+  && rm -rf /var/lib/apt/lists/*
+
 ENV PORT=3000
 
 COPY . /frontend-react-js
