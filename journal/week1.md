@@ -10,9 +10,48 @@ docker run backend-flask:1.0-SNAPSHOT /shell /script
 
 2. Push and tag an image to dockerhub
 
-TODO: [push_to_dockerhub](https://docs.docker.com/docker-hub/repos/)
+  TODO: [push_to_dockerhub](https://docs.docker.com/docker-hub/repos/)
 
-Shall we go with [quay.io too](https://docs.quay.io/solution/getting-started.html)?
+  Shall we go with [quay.io too](https://docs.quay.io/solution/getting-started.html)?
+
+  * Pushing the image to [quay.io] repository.
+
+  ```bash
+  # Login to repository
+  $ docker login quay.io
+  Authenticating with existing credentials...
+  Login Succeeded
+  # Tag images appropriately
+  $ docker tag backend-flask:1.0-SNAPSHOT quay.io/lkusmir/snapshots/backend-flask:1.0-SNAPSHOT
+  $ docker tag backend-flask:1.1-SNAPSHOT quay.io/lkusmir/snapshots/backend-flask:1.1-SNAPSHOT
+  $ docker tag backend-flask:1.1-SNAPSHOT quay.io/lkusmir/snapshots/backend-flask
+  $ docker tag frontend-react-js:1.0-SNAPSHOT quay.io/lkusmir/snapshots/frontend-react-js:1.0-SNAPSHOT
+  $ docker tag frontend-react-js:1.1-SNAPSHOT quay.io/lkusmir/snapshots/frontend-react-js:1.1-SNAPSHOT
+  $ docker tag frontend-react-js:1.1-SNAPSHOT quay.io/lkusmir/snapshots/frontend-react-js
+  $ docker image list | grep quay
+  quay.io/lkusmir/snapshots/frontend-react-js   1.1-SNAPSHOT        55eeb3e3cc5e        22 hours ago        1.2GB
+  quay.io/lkusmir/snapshots/frontend-react-js   latest              55eeb3e3cc5e        22 hours ago        1.2GB
+  quay.io/lkusmir/snapshots/backend-flask       1.1-SNAPSHOT        e19dd292f3ed        22 hours ago        129MB
+  quay.io/lkusmir/snapshots/backend-flask       latest              e19dd292f3ed        22 hours ago        129MB
+  quay.io/lkusmir/snapshots/frontend-react-js   1.0-SNAPSHOT        aa76de3305c7        38 hours ago        1.2GB
+  quay.io/lkusmir/snapshots/backend-flask       1.0-SNAPSHOT        1cd618986456        38 hours ago        129MB
+
+  # Push images to repository
+  $ docker push quay.io/lkusmir/snapshots/backend-flask 
+  The push refers to repository [quay.io/lkusmir/snapshots/backend-flask]
+  1.0-SNAPSHOT: digest: sha256:b70f4f0c30fe04148444135422ee8e3a456548106befb2ebcfea37c12fcb253b size: 2203
+  1.1-SNAPSHOT: digest: sha256:8ab8998936457e3f5a71e823fef52621aaf08934d008eb4171c0ba9fb288fccb size: 2203
+  latest: digest: sha256:8ab8998936457e3f5a71e823fef52621aaf08934d008eb4171c0ba9fb288fccb size: 2203
+  $ docker push quay.io/lkusmir/snapshots/frontend-react-js
+  The push refers to repository [quay.io/lkusmir/snapshots/frontend-react-js]
+  1.0-SNAPSHOT: digest: sha256:ed2f8bda0eee4a7039814d0a168f2870a436a0f8663246344e06a3856f62bfd4 size: 2639
+  1.1-SNAPSHOT: digest: sha256:dab06c5e9d5d045eb28026577307e2610c41432255527cdc87674647eba5cc84 size: 2639
+  latest: digest: sha256:dab06c5e9d5d045eb28026577307e2610c41432255527cdc87674647eba5cc84 size: 2639
+  # Note: then pushing newer version - some layers already existed ;)
+  # the upload is completed. The containers are available. Additionally I've marked the 1.1-SNAPSHOT with the `latest` tag
+  $ docker pull quay.io/lkusmir/snapshots/frontend-react-js
+  $ docker pull 
+  ```
 
 3. Multistage building for a Dockerfile
 
@@ -20,10 +59,29 @@ Shall we go with [quay.io too](https://docs.quay.io/solution/getting-started.htm
 
 5. Research best practices of Dockerfile and attempt to implement it in your Dockerfile
 
+  Some of the best practices implemented:
+
+  * Application code [tested for vulnerabilites](https://sonarcloud.io/project/overview?id=lkusmir_aws-bootcamp-cruddur-2023) before production use. Shift left when possible.
+
+  ![sonar.lint.in.ide](./img/12.png)  
+  *Sonar code quality scan within IDE*
+
+  * Artifacts scanned for vulnerabilites
+
+  Here we could use of of the tools available on the market, tor example Jfrog Xray (non-free). Most of the repositories have some kind of security scan enabled. Check out the results for the [frontend](https://quay.io/repository/lkusmir/snapshots/frontend-react-js/manifest/sha256:dab06c5e9d5d045eb28026577307e2610c41432255527cdc87674647eba5cc84?tab=vulnerabilities) and [backend](https://quay.io/repository/lkusmir/snapshots/backend-flask/manifest/sha256:8ab8998936457e3f5a71e823fef52621aaf08934d008eb4171c0ba9fb288fccb?tab=vulnerabilities) image.
+
+* keep runtimes updated
+* basic data within dockerfile -author etc
+* no sensitive data in docker files or images + SecretMgmtService - vault
+* RO filesystem and Volume 
+* separate db for LTS - actually I'd recommend treating all artifacts as ephemeral. The only source of truth should be within the code. Don't estimate the container has to last within repo for longer than the build process
+* Code tested for Vulnerabilities before production use
+
 * commands order matters
 * don't do root - rootless is the new black
+* image vulnerability scanning - https://snyk.io/ or sonarqube
 * use explicit versions
-* keep it small
+* keep it small - decrease container size
 
 
 6. Learn how to install Docker on your localmachine and get the same containes running outside of Gitpod/codespaces
