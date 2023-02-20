@@ -1,5 +1,6 @@
 FROM python:3.10-slim-buster
-
+LABEL vendor="CloudProjectBootcamp"
+LABEL built-by="lkusmir"
 # Let's make sure we're updated and install curl for the Healthcheck
 RUN apt-get update && apt-get full-upgrade -y\
   && apt-get install -y curl \
@@ -28,7 +29,6 @@ COPY . .
 ENV FLASK_ENV=development
 
 EXPOSE ${PORT}
-
 # CMD (Command)
 # python3 -m flask run --host=0.0.0.0 --port=4567
 CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0", "--port=4567"]

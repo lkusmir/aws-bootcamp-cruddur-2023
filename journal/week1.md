@@ -119,6 +119,9 @@ docker run backend-flask:1.0-SNAPSHOT /shell /script
 
 3. Multistage building for a Dockerfile
 
+[Refernce](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#use-multi-stage-builds).
+
+
 4. Implement a healthcheck in the V3 Docker compos file
 
   Relevant documentation:
@@ -182,17 +185,42 @@ docker run backend-flask:1.0-SNAPSHOT /shell /script
   87487ed8136c        About a minute ago   /bin/sh -c #(nop) COPY dir:3259f6d1ab501d39f…   169MB               
   8fefff9fe08d        About an hour ago    /bin/sh -c apt-get update && apt-get full-up…   90MB  
   ```
+* Explicitly declare versions of the image, don't rely on `lastest`. Within the Dockerfile also try to define the exact versions of requirements, for example when installing prereqs, or with the `FROM` directive.
 
-* basic data within dockerfile -author etc
+* Label it - add Metadata to an image - kv format
+
+  Labels were added to Dockerfiles.
+
 * no sensitive data in docker files or images + SecretMgmtService - vault
 * RO filesystem and Volume 
 * separate db for LTS - actually I'd recommend treating all artifacts as ephemeral. The only source of truth should be within the code. Don't estimate the container has to last within repo for longer than the build process
 
-* commands order matters
-* don't do root - rootless is the new black
-* use explicit versions
-* keep it small - decrease container size
+* Friends don't let friends run containers as root!
 
+  The official node Docker image, as well as its variants like alpine, include a least-privileged user of the same name: node.
+  The Frontend Dockerfile has been reconfigured to use non-root user.
+
+  ```bash
+  $ docker ps 
+  CONTAINER ID        IMAGE                       COMMAND                  CREATED             STATUS              PORTS                    NAMES
+  8320c7750d55        lkusmir/frontend-react-js   "docker-entrypoint.s…"   2 minutes ago       Up 2 minutes        0.0.0.0:3000->3000/tcp   musing_kepler
+  $ docker exec -it 8320c7750d55caeccbabfa59921532ee632df6abbb011d001fc617f16bb62507 id
+  uid=1000(node) gid=1000(node) groups=1000(node)
+  ```
+
+[Usefull document](https://snyk.io/blog/10-best-practices-to-containerize-nodejs-web-applications-with-docker/) on using the `node` user for Node.js application.
+
+* use explicit versions
+* Keep It Small 
+    - [`.dockerignore`](https://docs.docker.com/engine/reference/builder/#dockerignore-file)
+    - look for smallest possible `FROM` images matching your reqs - substituted Frontend `FROM` to use the slim distro; could further improve by rewrite to `alpine`
+
+  Here's the size difference post implementation of `slim`:
+  ```
+  REPOSITORY                                    TAG                 IMAGE ID            CREATED             SIZE
+  frontend-react-js                             1.4-SNAPSHOT        f03e3e300e6e        8 minutes ago       485MB
+  frontend-react-js                             1.3-SNAPSHOT        6c1c09cf7fc6        About an hour ago   1.29GB
+  ```
 
 6. Learn how to install Docker on your localmachine and get the same containes running outside of Gitpod/codespaces
 
