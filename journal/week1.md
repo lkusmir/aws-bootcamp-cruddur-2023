@@ -150,17 +150,15 @@ docker run backend-flask:1.0-SNAPSHOT /shell /script
 
 * keeping runtimes updated 
 
-Added apt to BackEnd Dockerfile
+  Added apt to BackEnd and Frontend Dockerfile. This alone actually reduced the number of vulnerabilites [here](https://quay.io/repository/lkusmir/snapshots/frontend-react-js?tab=tags) . 
 
 * basic data within dockerfile -author etc
 * no sensitive data in docker files or images + SecretMgmtService - vault
 * RO filesystem and Volume 
 * separate db for LTS - actually I'd recommend treating all artifacts as ephemeral. The only source of truth should be within the code. Don't estimate the container has to last within repo for longer than the build process
-* Code tested for Vulnerabilities before production use
 
 * commands order matters
 * don't do root - rootless is the new black
-* image vulnerability scanning - https://snyk.io/ or sonarqube
 * use explicit versions
 * keep it small - decrease container size
 
