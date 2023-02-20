@@ -198,6 +198,10 @@ docker run backend-flask:1.0-SNAPSHOT /shell /script
 
 7. Launch an EC2 instance that has docker installed, and pull a container to demonstrate you can run your own docker processes
 
+8. Add postgress and dynamodb
+
+
+
 ## Other information
 
 1. One can utilize docker to run [super-linter](https://github.com/github/super-linter#filter-linted-files) locally. Let's limit the scope of test for the `./journal` directory for now.
