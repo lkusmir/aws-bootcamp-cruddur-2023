@@ -163,6 +163,13 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Activity'
+  /api/status:
+    get:
+      description: 'Simple status endpoint'
+      parameters: []
+      responses:
+        '200':
+          description: OK
 components:
   schemas:
     Activity:
