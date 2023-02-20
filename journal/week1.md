@@ -148,9 +148,40 @@ docker run backend-flask:1.0-SNAPSHOT /shell /script
   ![example.result](./img/13.png)  
   *Example scan result*
 
-* keeping runtimes updated 
+* Keeping runtimes updated 
 
   Added apt to BackEnd and Frontend Dockerfile. This alone actually reduced the number of vulnerabilites [here](https://quay.io/repository/lkusmir/snapshots/frontend-react-js?tab=tags) . 
+
+* Declare 'cheap' commands as late as possible, aka command order matters
+
+  For example, early declaration of `ENV` within Frontends Dockerfile was an antipattern.
+  Before:
+
+  ```control
+  $ docker history frontend-react-js:1.2-SNAPSHOT 
+  IMAGE               CREATED             CREATED BY                                      SIZE                COMMENT
+  cd90f77ff81b        About an hour ago   /bin/sh -c #(nop)  CMD ["npm" "start"]          0B                  
+  66046061e4e7        About an hour ago   /bin/sh -c #(nop)  EXPOSE 3000                  0B                  
+  3933fc1b642d        About an hour ago   /bin/sh -c npm install                          123MB               
+  b6e8f29d3537        About an hour ago   /bin/sh -c #(nop) WORKDIR /frontend-react-js    0B                  
+  27bdd30a1bd0        About an hour ago   /bin/sh -c #(nop) COPY dir:138a2d4caa281b02c…   169MB               
+  ecef87c5a3e6        About an hour ago   /bin/sh -c #(nop)  ENV PORT=3000                0B                  
+  8fefff9fe08d        About an hour ago   /bin/sh -c apt-get update && apt-get full-up…   90MB 
+  ```
+
+  After:
+
+  ```control
+  $ docker history frontend-react-js:1.3-SNAPSHOT 
+  IMAGE               CREATED              CREATED BY                                      SIZE                COMMENT
+  6c1c09cf7fc6        13 seconds ago       /bin/sh -c #(nop)  CMD ["npm" "start"]          0B                  
+  899214feeed2        13 seconds ago       /bin/sh -c #(nop)  EXPOSE 3000                  0B                  
+  1a1a6d5a9735        14 seconds ago       /bin/sh -c #(nop)  ENV PORT=3000                0B                  
+  ef9c70c2545d        15 seconds ago       /bin/sh -c npm install                          123MB               
+  cc708723d0ff        About a minute ago   /bin/sh -c #(nop) WORKDIR /frontend-react-js    0B                  
+  87487ed8136c        About a minute ago   /bin/sh -c #(nop) COPY dir:3259f6d1ab501d39f…   169MB               
+  8fefff9fe08d        About an hour ago    /bin/sh -c apt-get update && apt-get full-up…   90MB  
+  ```
 
 * basic data within dockerfile -author etc
 * no sensitive data in docker files or images + SecretMgmtService - vault
