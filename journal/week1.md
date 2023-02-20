@@ -10,11 +10,67 @@ docker run backend-flask:1.0-SNAPSHOT /shell /script
 
 2. Push and tag an image to dockerhub
 
-  TODO: [push_to_dockerhub](https://docs.docker.com/docker-hub/repos/)
+  * Pushing the image to [dockerhub](https://hub.docker.com)
+  
+  ```bash
+  # Login to repository
+  $ docker login docker.io
+  Authenticating with existing credentials...
+  Login Succeeded
+  # Tag images appropriately
+  $ docker tag backend-flask:1.0-SNAPSHOT lkusmir/backend-flask:1.0-SNAPSHOT
+  $ docker tag backend-flask:1.1-SNAPSHOT lkusmir/backend-flask:1.1-SNAPSHOT
+  $ docker tag backend-flask:latest lkusmir/backend-flask
+  $ docker tag frontend-react-js:1.0-SNAPSHOT lkusmir/frontend-react-js:1.0-SNAPSHOT
+  $ docker tag frontend-react-js:1.1-SNAPSHOT lkusmir/frontend-react-js:1.1-SNAPSHOT
+  $ docker tag frontend-react-js:latest lkusmir/frontend-react-js
+  $ docker image list 
+  lkusmir/frontend-react-js                     1.1-SNAPSHOT        55eeb3e3cc5e        23 hours ago        1.2GB
+  lkusmir/frontend-react-js                     latest              55eeb3e3cc5e        23 hours ago        1.2GB
+  lkusmir/backend-flask                         1.1-SNAPSHOT        e19dd292f3ed        24 hours ago        129MB
+  lkusmir/backend-flask                         latest              e19dd292f3ed        24 hours ago        129MB
+  lkusmir/frontend-react-js                     1.0-SNAPSHOT        aa76de3305c7        40 hours ago        1.2GB
+  lkusmir/backend-flask                         1.0-SNAPSHOT        1cd618986456        40 hours ago        129MB
 
-  Shall we go with [quay.io too](https://docs.quay.io/solution/getting-started.html)?
+  # Push the tempo, push the tempo
+  # Note some layers are already mounted by library/node :)
+  $ docker push lkusmir/frontend-react-js
+  The push refers to repository [docker.io/lkusmir/frontend-react-js]
+  3ca38fa3fd88: Pushed 
+  67232742a947: Pushed 
+  8dcc2270b2a4: Mounted from library/node 
+  60a3cb9a013a: Mounted from library/node 
+  31880ac21a09: Mounted from library/node 
+  86b22c61669b: Mounted from library/node 
+  dec5d443c5c1: Mounted from library/node 
+  753fac84fc56: Mounted from library/node 
+  81fcd676802f: Mounted from library/node 
+  6a1754327612: Mounted from library/node 
+  3943af3b0cbd: Mounted from library/node 
+  1.0-SNAPSHOT: digest: sha256:ed2f8bda0eee4a7039814d0a168f2870a436a0f8663246344e06a3856f62bfd4 size: 2639
+  (...)
+  lkusmir/backend-flask                         1.0-SNAPSHOT        1cd618986456        40 hours ago        129MB
+  (...)
+  lkusmir/backend-flask                         1.0-SNAPSHOT        1cd618986456        40 hours ago        129MB
 
-  * Pushing the image to [quay.io] repository.
+  $ docker push lkusmir/backend-flask
+  The push refers to repository [docker.io/lkusmir/backend-flask]1.0-SNAPSHOT: digest: sha256:b70f4f0c30fe04148444135422ee8e3a456548106befb2ebcfea37c12fcb253b size: 2203
+  1.1-SNAPSHOT: digest: sha256:8ab8998936457e3f5a71e823fef52621aaf08934d008eb4171c0ba9fb288fccb size: 2203
+  latest: digest: sha256:8ab8998936457e3f5a71e823fef52621aaf08934d008eb4171c0ba9fb288fccb size: 2203
+  # Images can be pushed if required
+  $ docker pull lkusmir/frontend-react-js
+  Using default tag: latest
+  docker pulatest: Pulling from lkusmir/frontend-react-js
+  Digest: sha256:dab06c5e9d5d045eb28026577307e2610c41432255527cdc87674647eba5cc84
+  Status: Image is up to date for lkusmir/frontend-react-js:latest
+  $ docker pull lkusmir/backend-flask
+  Using default tag: latest
+  latest: Pulling from lkusmir/backend-flask
+  Digest: sha256:8ab8998936457e3f5a71e823fef52621aaf08934d008eb4171c0ba9fb288fccb
+  Status: Image is up to date for lkusmir/backend-flask:latest
+  ```
+
+  * Pushing the image to [quay.io](https://quay.io) repository.
 
   ```bash
   # Login to repository
@@ -50,7 +106,15 @@ docker run backend-flask:1.0-SNAPSHOT /shell /script
   # Note: then pushing newer version - some layers already existed ;)
   # the upload is completed. The containers are available. Additionally I've marked the 1.1-SNAPSHOT with the `latest` tag
   $ docker pull quay.io/lkusmir/snapshots/frontend-react-js
-  $ docker pull 
+  Using default tag: latest
+  latest: Pulling from lkusmir/snapshots/frontend-react-js
+  Digest: sha256:dab06c5e9d5d045eb28026577307e2610c41432255527cdc87674647eba5cc84
+  Status: Image is up to date for quay.io/lkusmir/snapshots/frontend-react-js:latest
+  $ docker pull quay.io/lkusmir/snapshots/frontend-react-js
+  Using default tag: latest
+  latest: Pulling from lkusmir/snapshots/frontend-react-js
+  Digest: sha256:dab06c5e9d5d045eb28026577307e2610c41432255527cdc87674647eba5cc84
+  Status: Image is up to date for quay.io/lkusmir/snapshots/frontend-react-js:latest
   ```
 
 3. Multistage building for a Dockerfile
@@ -69,6 +133,9 @@ docker run backend-flask:1.0-SNAPSHOT /shell /script
   * Artifacts scanned for vulnerabilites
 
   Here we could use of of the tools available on the market, tor example Jfrog Xray (non-free). Most of the repositories have some kind of security scan enabled. Check out the results for the [frontend](https://quay.io/repository/lkusmir/snapshots/frontend-react-js/manifest/sha256:dab06c5e9d5d045eb28026577307e2610c41432255527cdc87674647eba5cc84?tab=vulnerabilities) and [backend](https://quay.io/repository/lkusmir/snapshots/backend-flask/manifest/sha256:8ab8998936457e3f5a71e823fef52621aaf08934d008eb4171c0ba9fb288fccb?tab=vulnerabilities) image.
+
+  ![example.result](./img/13.png)  
+  *Example scan result*
 
 * keep runtimes updated
 * basic data within dockerfile -author etc
