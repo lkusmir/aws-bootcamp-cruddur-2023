@@ -125,19 +125,19 @@ docker run backend-flask:1.0-SNAPSHOT /shell /script
 
   Some of the best practices implemented:
 
-  * Application code [tested for vulnerabilites](https://sonarcloud.io/project/overview?id=lkusmir_aws-bootcamp-cruddur-2023) before production use. Shift left when possible.
+  * Application code [testing for vulnerabilites](https://sonarcloud.io/project/overview?id=lkusmir_aws-bootcamp-cruddur-2023) before production use. Shift left when possible.
 
   ![sonar.lint.in.ide](./img/12.png)  
   *Sonar code quality scan within IDE*
 
-  * Artifacts scanned for vulnerabilites
+  * Artifacts scanning for vulnerabilites
 
-  Here we could use of of the tools available on the market, tor example Jfrog Xray (non-free). Most of the repositories have some kind of security scan enabled. Check out the results for the [frontend](https://quay.io/repository/lkusmir/snapshots/frontend-react-js/manifest/sha256:dab06c5e9d5d045eb28026577307e2610c41432255527cdc87674647eba5cc84?tab=vulnerabilities) and [backend](https://quay.io/repository/lkusmir/snapshots/backend-flask/manifest/sha256:8ab8998936457e3f5a71e823fef52621aaf08934d008eb4171c0ba9fb288fccb?tab=vulnerabilities) image.
+  Here we could use of of the tools available on the market, tor example Jfrog Xray (non-free). Most of the repositories have some kind of security scan enabled. Check out the results for the [frontend](https://quay.io/repository/lkusmir/snapshots/frontend-react-js/manifest/sha256:dab06c5e9d5d045eb28026577307e2610c41432255527cdc87674647eba5cc84?tab=vulnerabilities) and [backend](https://quay.io/repository/lkusmir/snapshots/backend-flask/manifest/sha256:8ab8998936457e3f5a71e823fef52621aaf08934d008eb4171c0ba9fb288fccb?tab=vulnerabilities) image scan with [Clair](https://quay.github.io/clair/howto/testing.html).
 
   ![example.result](./img/13.png)  
   *Example scan result*
 
-* keep runtimes updated
+* keeping runtimes updated - automatically rebuild images on regular basis
 * basic data within dockerfile -author etc
 * no sensitive data in docker files or images + SecretMgmtService - vault
 * RO filesystem and Volume 
