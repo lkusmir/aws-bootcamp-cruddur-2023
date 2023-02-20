@@ -198,11 +198,9 @@ docker run backend-flask:1.0-SNAPSHOT /shell /script
 
 7. Launch an EC2 instance that has docker installed, and pull a container to demonstrate you can run your own docker processes
 
-8. Add postgress and dynamodb
 
 
-
-## Other information
+## Additional information
 
 1. One can utilize docker to run [super-linter](https://github.com/github/super-linter#filter-linted-files) locally. Let's limit the scope of test for the `./journal` directory for now.
 
@@ -215,6 +213,11 @@ $ docker run -e RUN_LOCAL=true -e FILTER_REGEX_INCLUDE=./journal/* -v $PWD:/tmp/
 2023-02-19 00:11:58 [ERROR]   ERRORS FOUND in MARKDOWN:[2]
 2023-02-19 00:11:59 [FATAL]   Exiting with errors found!
 ```
+2. Add postgres and dynamodb
+
+  ![services_running](./img/14.png)
+
+  Services were operational - checked accordingly.
 
 ## Week1 -  Notes from the meetup
 
