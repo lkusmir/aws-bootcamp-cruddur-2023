@@ -7,7 +7,7 @@ RUN apt-get update && apt-get full-upgrade -y\
   && rm -rf /var/lib/apt/lists/*
 COPY --chown=node:node . /frontend-react-js
 WORKDIR /frontend-react-js
-RUN npm ci
+RUN npm install
 ENV PORT=3000
 EXPOSE ${PORT}
 USER node
