@@ -191,9 +191,11 @@ docker run backend-flask:1.0-SNAPSHOT /shell /script
 
   Labels were added to Dockerfiles.
 
-* no sensitive data in docker files or images + SecretMgmtService - vault
-* RO filesystem and Volume 
-* separate db for LTS - actually I'd recommend treating all artifacts as ephemeral. The only source of truth should be within the code. Don't estimate the container has to last within repo for longer than the build process
+* No sensitive data in docker files or images - use envs or vault
+
+* Use RO filesystems for Volumes with static data
+
+* The Best Practce for Day0 tutorial suggested having separate Repositories for LTS - I is a good practice to some extend, but actually I'd recommend treating all artifacts as ephemeral. The only source of truth should be within the code. Don't estimate the container has to last within repo for longer than the build process. This leads to a lot of debt and overhead if we relay on artifacts instead of code and CI.
 
 * Friends don't let friends run containers as root!
 
@@ -210,8 +212,9 @@ docker run backend-flask:1.0-SNAPSHOT /shell /script
 
 [Usefull document](https://snyk.io/blog/10-best-practices-to-containerize-nodejs-web-applications-with-docker/) on using the `node` user for Node.js application.
 
-* use explicit versions
-* Keep It Small 
+**WARNING:** This might actaully impact the GITPOD "live editing" as we're mapping volumes over the container.
+
+* KISS - small is good
     - [`.dockerignore`](https://docs.docker.com/engine/reference/builder/#dockerignore-file)
     - look for smallest possible `FROM` images matching your reqs - substituted Frontend `FROM` to use the slim distro; could further improve by rewrite to `alpine`
 
