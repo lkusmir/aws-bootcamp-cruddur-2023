@@ -11,4 +11,7 @@ Jessica Kerr - jessitron.com
 ![honeycomb](./img/17.png)
 *Data visible within the HoneyComb*
 
+![honeycomb.error.analysis](./img/1.png)
+*GiveMeError analysis within the HoneyComb*
+
 [honeycomb-whoami](https://honeycomb-whoami.glitch.com)
