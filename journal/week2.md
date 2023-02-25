@@ -2,6 +2,12 @@
 
 ## Week2 Assignment:
 
+TODO: https://github.com/omenking/aws-bootcamp-cruddur-2023/blob/week-2/journal/week2.md
+
+TODO: https://docs.honeycomb.io/getting-data-in/data-best-practices/
+
+TODO: additional videos for addition assignments
+
 * Instrument Honeycomb for the frontend-application to observe network latency between frontend and backend[HARD]
 
 * Add custom instrumentation to Honeycomb to add more attributes eg. UserId, Add a custom span
