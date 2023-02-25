@@ -313,6 +313,8 @@ Can be utilized for the frontend, backend volumes. Simply append `,ro` to the de
   lkusmir/backend-flask   latest    f4a130e599b1   4 days ago   143MB
   ```
 
+  **HINT:** Terminate your instance. ;P 
+
 ## Additional information
 
 1. One can utilize docker to run [super-linter](https://github.com/github/super-linter#filter-linted-files) locally. Let's limit the scope of test for the `./journal` directory for now.
