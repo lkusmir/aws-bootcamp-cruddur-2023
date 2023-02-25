@@ -1,0 +1,21 @@
+# builder stage
+FROM node:16.18-slim as builder
+# Let's make sure we're updated and install curl for the Healthcheck
+RUN apt-get update && apt-get full-upgrade -y\
+  && apt-get install -y curl \
+  && rm -rf /var/lib/apt/lists/*
+COPY . /frontend-react-js
+WORKDIR /frontend-react-js
+RUN npm install
+RUN npm run build
+
+
+# runner stage - let's not focus on the fact, nginx port is default - we can tweak it to 3000
+FROM nginx:1.19.0
+LABEL vendor="CloudProjectBootcamp"
+LABEL built-by="lkusmir"
+WORKDIR /usr/share/nginx/html
+RUN rm -rf ./*
+COPY --from=builder /frontend-react-js .
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]

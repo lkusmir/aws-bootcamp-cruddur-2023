@@ -4,9 +4,19 @@
 
 1. Run the docker CMD as en external script.
 
+Somewhere within the Dockerfile we have to copy the script into the container
 ```bash
-docker run backend-flask:1.0-SNAPSHOT /shell /script
+COPY ./startup.sh /startup.sh
 ```
+Then the use the CMD command to run it:
+```bash
+MCD ["/bin/bash","/startup.sh"]
+```
+
+This might be usefull when:
+* tweaking runtime parameters based on prerun conditions
+* diagnosing the process - run loop with `sleep`
+* running more than one command - a bit obvious; running dockers to process and finish 
 
 2. Push and tag an image to dockerhub
 
@@ -119,8 +129,16 @@ docker run backend-flask:1.0-SNAPSHOT /shell /script
 
 3. Multistage building for a Dockerfile
 
-[Refernce](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#use-multi-stage-builds).
+  [Reference](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#use-multi-stage-builds).
 
+  Example multistage build of the frontend is in the [Dockerfile-multistage](../frontend-react-js/Dockerfile-multistage). It builds the image using the node image, then runs it in nginx, again decreasing the footprint.
+
+  ```bash
+  $ docker build -f Dockerfile-multistage -t lkusmir/frontend-react-js:1.6-MULTISTAGE . 
+  $ docker image list
+  lkusmir/frontend-react-js                     1.6-MULTISTAGE      6c7b4c9af206        45 seconds ago       307MB
+  lkusmir/frontend-react-js                     1.5-SNAPSHOT        0ad365dbe431        4 days ago           683MB
+  ```
 
 4. Implement a healthcheck in the V3 Docker compos file
 
@@ -136,7 +154,10 @@ docker run backend-flask:1.0-SNAPSHOT /shell /script
   Added a Frontend Healthcheck appropriately. 
 
 5. Research best practices of Dockerfile and attempt to implement it in your Dockerfile
-
+  
+  Resources:
+  * [Docker Node.js app best practices](https://snyk.io/blog/10-best-practices-to-containerize-nodejs-web-applications-with-docker/)
+  * [Docker pythong app best practices](https://testdriven.io/blog/docker-best-practices/)
   Some of the [best practices](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/) implemented:
 
   * Application code [testing for vulnerabilites](https://sonarcloud.io/project/overview?id=lkusmir_aws-bootcamp-cruddur-2023) before production use. Shift left when possible.
@@ -193,7 +214,9 @@ docker run backend-flask:1.0-SNAPSHOT /shell /script
 
 * No sensitive data in docker files or images - use envs or vault
 
-* Use RO filesystems for Volumes with static data
+* Use [RO filesystems](https://docs.docker.com/storage/volumes/#use-a-read-only-volume) for Volumes with static data
+
+Can be utilized for the frontend, backend volumes. Simply append `,ro` to the definition.
 
 * The Best Practce for Day0 tutorial suggested having separate Repositories for LTS - I is a good practice to some extend, but actually I'd recommend treating all artifacts as ephemeral. The only source of truth should be within the code. Don't estimate the container has to last within repo for longer than the build process. This leads to a lot of debt and overhead if we relay on artifacts instead of code and CI.
 
@@ -268,11 +291,27 @@ docker run backend-flask:1.0-SNAPSHOT /shell /script
     ![local.app.live](./img/10.png)
     *Application running locally.*
 
-    TODO: Second approach with docker-compose?
+    **HINT:** Second approach with docker-compose - must use conditional statements depending on the $GITPOD_X vars or set them to localhost.localdomain values with appropriate `/etc/hosts` entries.
 
 7. Launch an EC2 instance that has docker installed, and pull a container to demonstrate you can run your own docker processes
 
+  ![launch](./img/16.png)
+  *Launching the instance*
 
+  ```bash
+  # logging in 
+  $ ssh -i ~/.ssh/generic-cloudprojectbootcamp.pem  ubuntu@X.X.X.X
+  # install docker https://docs.docker.com/engine/install/ubuntu/
+  # allow user to connect to docker service
+  $ sudo usermod -aG docker ubuntu
+  # download the image
+  $ docker pull lkusmir/backend-flask
+  Status: Downloaded newer image for lkusmir/backend-flask:latest
+  docker.io/lkusmir/backend-flask:latest
+  $ docker image list
+  REPOSITORY              TAG       IMAGE ID       CREATED      SIZE
+  lkusmir/backend-flask   latest    f4a130e599b1   4 days ago   143MB
+  ```
 
 ## Additional information
 
