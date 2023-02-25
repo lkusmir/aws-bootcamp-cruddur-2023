@@ -17,4 +17,7 @@ Jessica Kerr - jessitron.com
 ![honeycomb.mock.results](./img/19.png)  
 *Mocked Trace*
 
+![heatmap.of.duration](./img/20.png)  
+*HeatMap of duration*
+
 [honeycomb-whoami](https://honeycomb-whoami.glitch.com)
