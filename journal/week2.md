@@ -8,3 +8,7 @@ Jessica Kerr - jessitron.com
 
 ### Observability 
 
+![honeycomb](./img/17.png)
+*Data visible within the HoneyComb*
+
+[honeycomb-whoami](https://honeycomb-whoami.glitch.com)
