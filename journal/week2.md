@@ -58,6 +58,8 @@ Resources:
 
 ### Configure and provision X-Ray daemon within docker-compose and send data back to X-Ray API
 
+
+
 ### Observe X-Ray traces within the AWS Consol
 
 ### Integrate Rollbar for Error Logging
