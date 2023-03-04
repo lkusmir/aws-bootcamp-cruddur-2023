@@ -9,7 +9,7 @@ import logging
 from time import strftime
 
 class NotificationsActivities:
-  def run():
+  def run(logger):
     now = datetime.now(timezone.utc).astimezone()
     # # Xray - start segment
     # segment = xray_recorder.begin_subsegment('NotificationActivities')
@@ -22,7 +22,7 @@ class NotificationsActivities:
     # subsegment.put_annotation('MyKey','Annotation Value')
 
     # Cloudwatch 
-    LOGGER.info("Inside Notification Activities")
+    logger.info("Inside Notification Activities")
     results = [{
       'uuid': '68f126b0-1ceb-4a33-88be-d90fa7109eee',
       'handle':  'coco',
