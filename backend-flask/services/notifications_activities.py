@@ -4,12 +4,14 @@ from datetime import datetime, timedelta, timezone
 # from aws_xray_sdk.ext.flask.middleware import XRayMiddleware
 
 #Cloudwatch
-import watchtower
-import logging
-from time import strftime
+# import watchtower
+# import logging
+# from time import strftime
 
 class NotificationsActivities:
-  def run(logger):
+  # Cloudwatch - passing the logger const
+  #def run(logger):
+  def run():
     now = datetime.now(timezone.utc).astimezone()
     # # Xray - start segment
     # segment = xray_recorder.begin_subsegment('NotificationActivities')
@@ -22,7 +24,7 @@ class NotificationsActivities:
     # subsegment.put_annotation('MyKey','Annotation Value')
 
     # Cloudwatch 
-    logger.info("Inside Notification Activities")
+    # logger.info("Inside Notification Activities")
     results = [{
       'uuid': '68f126b0-1ceb-4a33-88be-d90fa7109eee',
       'handle':  'coco',

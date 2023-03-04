@@ -28,9 +28,10 @@ from opentelemetry.sdk.trace.export import ConsoleSpanExporter, SimpleSpanProces
 # from aws_xray_sdk.ext.flask.middleware import XRayMiddleware
 
 # CloudWatch
-import watchtower
-import logging
-from time import strftime
+# import watchtower
+# import logging
+# from time import strftime
+#EOF Cloudwatch
 
 # HoneyComb: Initialize tracing and an exporter that can send data to Honeycomb
 provider = TracerProvider()
@@ -41,13 +42,14 @@ tracer = trace.get_tracer(__name__)
 
 # CloudWatch
 # Configuring Logger to Use CloudWatch
-LOGGER = logging.getLogger(__name__)
-LOGGER.setLevel(logging.DEBUG)
-console_handler = logging.StreamHandler()
-cw_handler = watchtower.CloudWatchLogHandler(log_group='cruddur')
-LOGGER.addHandler(console_handler)
-LOGGER.addHandler(cw_handler)
-LOGGER.info("Application")
+# LOGGER = logging.getLogger(__name__)
+# LOGGER.setLevel(logging.DEBUG)
+# console_handler = logging.StreamHandler()
+# cw_handler = watchtower.CloudWatchLogHandler(log_group='cruddur')
+# LOGGER.addHandler(console_handler)
+# LOGGER.addHandler(cw_handler)
+# LOGGER.info("Application")
+#EOF Cloudwatch
 
 app = Flask(__name__)
 # HoneyComb
@@ -72,11 +74,11 @@ cors = CORS(
 )
 
 #Cloudwatch
-@app.after_request
-def after_request(response):
-    timestamp = strftime('[%Y-%b-%d %H:%M]')
-    LOGGER.error('%s %s %s %s %s %s', timestamp, request.remote_addr, request.method, request.scheme, request.full_path, response.status)
-    return response
+# @app.after_request
+# def after_request(response):
+#     timestamp = strftime('[%Y-%b-%d %H:%M]')
+#     LOGGER.error('%s %s %s %s %s %s', timestamp, request.remote_addr, request.method, request.scheme, request.full_path, response.status)
+#     return response
 #EOF Cloudwatch
 
 @app.route("/api/status", methods=['GET'])
@@ -125,7 +127,9 @@ def data_home():
 
 @app.route("/api/activities/notifications", methods=['GET'])
 def data_notifications():
-  data = NotificationsActivities.run(logger=LOGGER)
+  # CloudWatch
+  # data = NotificationsActivities.run(logger=LOGGER)
+  data = NotificationsActivities.run()  
   return data, 200
 
 @app.route("/api/activities/@<string:handle>", methods=['GET'])
