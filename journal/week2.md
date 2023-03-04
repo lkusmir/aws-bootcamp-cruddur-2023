@@ -114,6 +114,9 @@ mar 04 10:47:44 bill systemd[1]: Started AWS X-Ray Daemon.
 
 ### Install WatchTower and write a custom logger to send application log data to CloudWatch Log group
 
+![AWS.CloudWatch](./img/29.png)
+*Logs within CloudWatch*
+
 ### Security Focus Video 
 
 Sending logs from CloudTrail to CloudWatch (brief ):
