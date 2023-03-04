@@ -1,20 +1,20 @@
 from datetime import datetime, timedelta, timezone
-from aws_xray_sdk.core import xray_recorder
-from aws_xray_sdk.core import patch_all
-from aws_xray_sdk.ext.flask.middleware import XRayMiddleware
+# from aws_xray_sdk.core import xray_recorder
+# from aws_xray_sdk.core import patch_all
+# from aws_xray_sdk.ext.flask.middleware import XRayMiddleware
 
 class NotificationsActivities:
   def run():
     now = datetime.now(timezone.utc).astimezone()
-    # Xray - start segment
-    segment = xray_recorder.begin_subsegment('NotificationActivities')
-    dictxray = {
-      'now'        : now.isoformat()
-    }
-    # Xray - put data
-    segment.put_metadata('key','value')
-    subsegment = xray_recorder.begin_subsegment('NotificationActivitiesSubsegment')
-    subsegment.put_annotation('MyKey','Annotation Value')
+    # # Xray - start segment
+    # segment = xray_recorder.begin_subsegment('NotificationActivities')
+    # dictxray = {
+    #   'now'        : now.isoformat()
+    # }
+    # # Xray - put data
+    # segment.put_metadata('key','value')
+    # subsegment = xray_recorder.begin_subsegment('NotificationActivitiesSubsegment')
+    # subsegment.put_annotation('MyKey','Annotation Value')
     results = [{
       'uuid': '68f126b0-1ceb-4a33-88be-d90fa7109eee',
       'handle':  'coco',
@@ -36,6 +36,6 @@ class NotificationsActivities:
       }],
     }
     ]
-    xray_recorder.end_subsegment()
-    xray_recorder.end_subsegment()
+    # xray_recorder.end_subsegment()
+    # xray_recorder.end_subsegment()
     return results

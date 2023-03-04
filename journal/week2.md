@@ -99,6 +99,15 @@ mar 04 10:47:44 bill systemd[1]: Started AWS X-Ray Daemon.
 ![AWS.trace](./img/24.png)  
 *AWS Xray Trace*
 
+![AWS.Trace.With.Subsegment](./img/26.png)  
+*AWS Xray Trace with Subsegment*
+
+![AWS.Trace.With.Subsegment](./img/27.png)  
+*Segment Metadata*
+
+![AWS.Trace.With.Subsegment](./img/28.png)  
+*Segment Annotation*
+
 ### Integrate Rollbar for Error Logging
 
 ### Trigger an error an observe an error with Rollbar
