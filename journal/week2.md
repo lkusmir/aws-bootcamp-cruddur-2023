@@ -16,7 +16,7 @@ Think sth important for instrumentation
 
 * Run custom queries in Honeycomb and save them later eg. Latency by UserID, Recent Traces
 
-Save query by userid or recent tracers
+Save query by userid or recent traces
 https://ui.honeycomb.io/systemadmin/environments/cruddur/datasets/backend-flask/home
 
 ## Week 2 notes
@@ -46,7 +46,7 @@ Jessica Kerr - jessitron.com
 ![heatmap.of.duration](./img/20.png)  
 *HeatMap of duration*
 
-![honeycomb-whoami](https://honeycomb-whoami.glitch.com)
+[honeycomb-whoami](https://honeycomb-whoami.glitch.com)
 
 ### Instrument AWS X-Ray into backend flask application
 
@@ -94,16 +94,22 @@ mar 04 10:47:44 bill systemd[1]: Started AWS X-Ray Daemon.
 ![AWS.data](./img/23.png) 
 *AWS CloudWatch Data*
 
+### Observe X-Ray traces within the AWS Console
+
 ![AWS.trace](./img/24.png)  
 *AWS Xray Trace*
-
-
-### Observe X-Ray traces within the AWS Consol
-
 
 ### Integrate Rollbar for Error Logging
 
 ### Trigger an error an observe an error with Rollbar
 
 ### Install WatchTower and write a custom logger to send application log data to CloudWatch Log group
+
+### Security Focus Video 
+
+Sending logs from CloudTrail to CloudWatch (brief ):
+![loggroup.created](./img/25.png)  
+*Log Group Created*
+
+
 
