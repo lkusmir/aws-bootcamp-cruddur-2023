@@ -1,5 +1,8 @@
 from datetime import datetime, timedelta, timezone
 from aws_xray_sdk.core import xray_recorder
+from aws_xray_sdk.core import patch_all
+from aws_xray_sdk.ext.flask.middleware import XRayMiddleware
+
 class NotificationsActivities:
   def run():
     now = datetime.now(timezone.utc).astimezone()
