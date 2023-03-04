@@ -6,7 +6,6 @@ TODO: https://github.com/omenking/aws-bootcamp-cruddur-2023/blob/week-2/journal/
 
 TODO: https://docs.honeycomb.io/getting-data-in/data-best-practices/
 
-TODO: additional videos for addition assignments
 
 * Instrument Honeycomb for the frontend-application to observe network latency between frontend and backend[HARD]
 
