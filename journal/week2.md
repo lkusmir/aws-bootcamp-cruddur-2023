@@ -46,7 +46,7 @@ Jessica Kerr - jessitron.com
 ![heatmap.of.duration](./img/20.png)  
 *HeatMap of duration*
 
-[honeycomb-whoami](https://honeycomb-whoami.glitch.com)
+![honeycomb-whoami](https://honeycomb-whoami.glitch.com)
 
 ### Instrument AWS X-Ray into backend flask application
 
@@ -56,10 +56,10 @@ Resources:
 
 [aws-xray-sdk github](https://github.com/aws/aws-xray-sdk-python)
 
-[xray-aws-config](./img/21.png)  
+![xray-aws-config](./img/21.png)  
 *AWS sampling rule*
 
-[xray-aws-group](./img/22.png)  
+![xray-aws-group](./img/22.png)  
 *AWS sampling group*
 
 ```bash
@@ -91,10 +91,15 @@ mar 04 10:47:44 bill systemd[1]: Started AWS X-Ray Daemon.
 
 ### Configure and provision X-Ray daemon within docker-compose and send data back to X-Ray API
 
+![AWS.data](./img/23.png) 
+*AWS CloudWatch Data*
 
+![AWS.trace](./img/24.png)  
+*AWS Xray Trace*
 
 
 ### Observe X-Ray traces within the AWS Consol
+
 
 ### Integrate Rollbar for Error Logging
 
