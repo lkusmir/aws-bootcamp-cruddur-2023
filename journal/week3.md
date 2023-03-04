@@ -29,5 +29,7 @@ cruddur-app-client
 
 
 ### Implement API calls to Amazon Coginto for custom login, signup, recovery and forgot password page
+
+
 ### Show conditional elements and data based on logged in or logged out
 ### Verify JWT Token server side to serve authenticated API endpoints in Flask Application
