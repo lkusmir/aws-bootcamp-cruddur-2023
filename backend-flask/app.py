@@ -47,6 +47,7 @@ console_handler = logging.StreamHandler()
 cw_handler = watchtower.CloudWatchLogHandler(log_group='cruddur')
 LOGGER.addHandler(console_handler)
 LOGGER.addHandler(cw_handler)
+LOGGER.info("Application")
 
 app = Flask(__name__)
 # HoneyComb
