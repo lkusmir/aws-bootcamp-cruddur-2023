@@ -30,8 +30,8 @@ services:
       REACT_APP_AWS_PROJECT_REGION: "${AWS_DEFAULT_REGION}"
       # REACT_APP_AWS_COGNITO_IDENTITY_POOL_ID: "eu-central-1_PntCtxkPZ"
       REACT_APP_AWS_COGNITO_REGION: "${AWS_DEFAULT_REGION}"
-      REACT_APP_AWS_USER_POOLS_ID: "eu-central-1_PntCtxkPZ"
-      REACT_APP_CLIENT_ID: "6bnl3c6cd2sd594k5vi5ntuehb"
+      REACT_APP_AWS_USER_POOLS_ID: "eu-central-1_ZKcK6Yl1W"
+      REACT_APP_CLIENT_ID: "7e9v7qla4dl9nrj9q45ot6a4bi"
 
 
 
