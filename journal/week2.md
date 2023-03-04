@@ -109,6 +109,9 @@ mar 04 10:47:44 bill systemd[1]: Started AWS X-Ray Daemon.
 
 ### Integrate Rollbar for Error Logging
 
+![Rollbar.Integration](./img/34.png)  
+*Rollbar integration*
+
 ### Trigger an error an observe an error with Rollbar
 
 ### Install WatchTower and write a custom logger to send application log data to CloudWatch Log group
