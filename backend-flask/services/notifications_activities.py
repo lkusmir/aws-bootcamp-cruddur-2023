@@ -12,8 +12,8 @@ class NotificationsActivities:
       "now"        : now.isoformat()
     }
     # Xray - put data
-    segment.put_metadata('key',dictxray, 'namespace')
-    subsegment = xray_recorder.begin_subsegment('NotificationActivitiesSubsegment')
+    segment.put_metadata('key','value')
+    subsegment = xray_recorder.begin_subsegment('NotificationActivitiesSubsegment','local')
     subsegment.put_annotation('MyKey','Annotation Value')
     results = [{
       'uuid': '68f126b0-1ceb-4a33-88be-d90fa7109eee',
