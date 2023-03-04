@@ -56,7 +56,41 @@ Resources:
 
 [aws-xray-sdk github](https://github.com/aws/aws-xray-sdk-python)
 
+[xray-aws-config](./img/21.png)  
+*AWS sampling rule*
+
+[xray-aws-group](./img/22.png)  
+*AWS sampling group*
+
+```bash
+$ wget https://s3.us-east-2.amazonaws.com/aws-xray-assets.us-east-2/xray-daemon/aws-xray-daemon-3.x.deb
+aws-xray-daemon-3.x 100%[===================>]   3,48M  2,09MB/s     w 1,7s    
+2023-03-04 10:47:16 (2,09 MB/s) - zapisano `aws-xray-daemon-3.x.deb' [3653436/3653436]
+$ sudo dpkg -i aws-xray-daemon-3.x.deb 
+Wybieranie wcześniej niewybranego pakietu xray.
+(Odczytywanie bazy danych ... 435839 plików i katalogów obecnie zainstalowanych.)
+Przygotowywanie do rozpakowania pakietu aws-xray-daemon-3.x.deb ...
+Preparing for install
+Failed to stop xray.service: Unit xray.service not loaded.
+Rozpakowywanie pakietu xray (3.3.6) ...
+Konfigurowanie pakietu xray (3.3.6) ...
+Starting xray daemon
+$ sudo systemctl status xray.service 
+● xray.service - AWS X-Ray Daemon
+   Loaded: loaded (/lib/systemd/system/xray.service; disabled; vendor preset: en
+   Active: active (running) since Sat 2023-03-04 10:47:44 CET; 5s ago
+ Main PID: 28215 (xray)
+    Tasks: 5 (limit: 4915)
+   Memory: 14.0M
+   CGroup: /system.slice/xray.service
+           └─28215 /usr/bin/xray -f /var/log/xray/xray.log
+
+mar 04 10:47:44 bill systemd[1]: Starting AWS X-Ray Daemon...
+mar 04 10:47:44 bill systemd[1]: Started AWS X-Ray Daemon.
+```
+
 ### Configure and provision X-Ray daemon within docker-compose and send data back to X-Ray API
+
 
 
 
