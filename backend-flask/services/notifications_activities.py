@@ -4,6 +4,7 @@ class NotificationsActivities:
   def run():
     # Xray - start segment
     segment = xray_recorder.begin_segment('NotificationActivities')
+    subsegment = xray_recorder.begin_subsegment('Notification Activities Subsegment ')
     now = datetime.now(timezone.utc).astimezone()
     # dict = {
     #   "now": now.isoformat()
@@ -11,6 +12,7 @@ class NotificationsActivities:
     # }
     # Xray - put data
     segment.put_metadata('key',dict, 'namespace')
+    subsegment.put_annotation('MyKey','Annotation Value')
     results = [{
       'uuid': '68f126b0-1ceb-4a33-88be-d90fa7109eee',
       'handle':  'coco',
@@ -32,5 +34,6 @@ class NotificationsActivities:
       }],
     }
     ]
+    xray_recorder.end_subsegment()
     xray_recorder.end_segment()
     return results
