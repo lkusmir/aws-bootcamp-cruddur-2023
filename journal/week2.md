@@ -2,21 +2,30 @@
 
 ## Week2 Assignment:
 
-TODO: https://github.com/omenking/aws-bootcamp-cruddur-2023/blob/week-2/journal/week2.md
+Instructions: 
+   * [github step-by-step](https://github.com/omenking/aws-bootcamp-cruddur-2023/blob/week-2/journal/week2.md)
 
-TODO: https://docs.honeycomb.io/getting-data-in/data-best-practices/
+   * [honeycomb docs](https://docs.honeycomb.io/getting-data-in/data-best-practices/)
 
 
-* Instrument Honeycomb for the frontend-application to observe network latency between frontend and backend[HARD]
+### Instrument Honeycomb for the frontend-application to observe network latency between frontend and backend
 
-* Add custom instrumentation to Honeycomb to add more attributes eg. UserId, Add a custom span
+The task wasn't completed due to requirements issues. Tried both the Automatic and Manual Instrumentation from the [vendor docs](https://docs.honeycomb.io/getting-data-in/opentelemetry/node-distro/) and already burned too much time for this. 
 
-Think sth important for instrumentation
+### Add custom instrumentation to Honeycomb to add more attributes eg. UserId, Add a custom span
 
-* Run custom queries in Honeycomb and save them later eg. Latency by UserID, Recent Traces
+Check commented out manual intrumentation in `NotificationsFeedPage.js`. 
 
-Save query by userid or recent traces
-https://ui.honeycomb.io/systemadmin/environments/cruddur/datasets/backend-flask/home
+### Run custom queries in Honeycomb and save them later eg. Latency by UserID, Recent Traces
+
+  ![Count by Response Code](./img/35.png)  
+  *Count by Response Code*
+
+  ![Slowest Traces](./img/36.png)  
+  *Slowest Traces in the Application* 
+
+  ![Most Exceptions](./img/37.png)  
+  *Which Exception Happens the Most in the Service*
 
 ## Week 2 notes
 

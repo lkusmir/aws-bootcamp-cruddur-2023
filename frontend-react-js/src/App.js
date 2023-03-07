@@ -1,5 +1,5 @@
 import './App.css';
-
+// import './tracing.js';
 import HomeFeedPage from './pages/HomeFeedPage';
 import NotificationFeedPage from './pages/NotificationsFeedPage.js';
 import UserFeedPage from './pages/UserFeedPage';
@@ -14,7 +14,6 @@ import {
   createBrowserRouter,
   RouterProvider
 } from "react-router-dom";
- import './tracing.js'
 
 const router = createBrowserRouter([
   {
