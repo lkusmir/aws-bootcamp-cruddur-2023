@@ -10,6 +10,18 @@ import ReplyForm from '../components/ReplyForm';
 // [TODO] Authenication
 import Cookies from 'js-cookie'
 
+// Honeycomb
+// import '../tracing.js';
+// const opentelemetry = require("@opentelemetry/api");
+
+// function handleUser(user) {
+//   let activeSpan = opentelemetry.trace.getActiveSpan();
+//   activeSpan.setAttribute("user.id", user.getId());
+// }
+// const tracer = opentelemetry.trace.getTracer("frontend-react-js-app-tracer");
+
+// Eof Honeycomb
+
 export default function NotificationsFeedPage() {
   const [activities, setActivities] = React.useState([]);
   const [popped, setPopped] = React.useState(false);
@@ -51,8 +63,13 @@ export default function NotificationsFeedPage() {
     if (dataFetchedRef.current) return;
     dataFetchedRef.current = true;
 
+    // honeycomb
+    // tracer.startActiveSpan("NotificationsFeedPage", (notispan) => {
+    //   notispan.setAttribute('module','NotificationsFeedPage.js');
     loadData();
     checkAuth();
+    //   notispan.end();
+    // }); 
   }, [])
 
   return (
