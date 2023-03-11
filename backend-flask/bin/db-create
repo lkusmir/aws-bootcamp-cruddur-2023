@@ -1,0 +1,13 @@
+#!/usr/bin/bash
+if [ -z "$1" ]; then
+        echo "Missing environment parameter. Should be either \"prod\" or \"dev\"."
+        exit 1
+fi
+
+if [ "$1" == "prod" ]; then
+    NO_DB_CONNECTION_URL=$(sed 's/\/cruddur//g' <<< "$PROD_CONNECTION_URL")
+else # cheating a bit :/
+    NO_DB_CONNECTION_URL=$(sed 's/\/cruddur//g' <<< "$CONNECTION_URL")
+fi
+
+psql $NO_DB_CONNECTION_URL -c "CREATE DATABASE cruddur;"

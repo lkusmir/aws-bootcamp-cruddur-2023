@@ -1,0 +1,15 @@
+#!/usr/bin/bash
+if [ -z "$1" ]; then
+        echo "Missing environment parameter. Should be either \"prod\" or \"dev\"."
+        exit 1
+fi
+
+if [ "$1" == "prod" ]; then
+    NO_DB_CONNECTION_URL=$(sed 's/\/cruddur//g' <<< "$PROD_CONNECTION_URL")
+else # cheating a bit :/
+    NO_DB_CONNECTION_URL=$(sed 's/\/cruddur//g' <<< "$CONNECTION_URL")
+fi
+
+psql $NO_DB_CONNECTION_URL -c "UPDATE pg_database SET datallowconn=false WHERE datname='cruddur';"
+psql $NO_DB_CONNECTION_URL -c "SELECT pg_terminate_backend(pg_stat_activity.pid) FROM pg_stat_activity WHERE pg_stat_activity.datname = 'cruddur' AND pid <> pg_backend_pid();"
+psql $NO_DB_CONNECTION_URL -c "DROP DATABASE cruddur;"

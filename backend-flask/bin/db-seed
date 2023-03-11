@@ -1,0 +1,13 @@
+#!/usr/bin/bash
+
+# psql $CONNECTION_URL cruddur < "$(dirname "$0")"/../db/schema.sql
+if [ -z "$1" ]; then
+        echo "Missing environment parameter. Should be either \"prod\" or \"dev\"."
+        exit 1
+fi
+
+if [ "$1" == "prod" ]; then
+    psql $PROD_CONNECTION_URL cruddur < "$(dirname "$0")"/../db/seed.sql
+else # cheater cheter on the wall
+    psql $CONNECTION_URL cruddur < "$(dirname "$0")"/../db/seed.sql
+fi
