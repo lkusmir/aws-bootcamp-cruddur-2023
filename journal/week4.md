@@ -3,6 +3,8 @@
 
 ## Week4 Assignment
 
+No assignement this week. 
+
 ## Week4 Notes
 
 ### Cast
